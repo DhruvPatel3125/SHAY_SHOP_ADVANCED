@@ -1,7 +1,6 @@
 require('dotenv').config();
 const express = require('express');
 const helmet = require('helmet');
-require('express-async-errors');
 const rateLimit = require('express-rate-limit');
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsdoc = require('swagger-jsdoc');
@@ -104,6 +103,27 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Server is running on: http://localhost:${PORT}`);
+});
+
+const io = require('socket.io')(server, {
+  cors: {
+    origin: "http://localhost:3000", // Allow requests from your React app
+    methods: ["GET", "POST"]
+  }
+});
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+
+  // Example: Listen for a custom event from the client
+  socket.on('chat message', (msg) => {
+    console.log('message: ' + msg);
+    io.emit('chat message', msg); // Broadcast the message to all connected clients
+  });
 });

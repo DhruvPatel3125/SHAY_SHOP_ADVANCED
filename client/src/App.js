@@ -8,21 +8,23 @@ import RegisterScreen from './screen/RegisterScreen';
 import ProfileScreen from './screen/ProfileScreen';
 import Adminscreen from './screen/Adminscreen';
 import Landingscreen from './screen/Landingscreen';
+import { SocketProvider } from './context/SocketContext'; // Import SocketProvider
 
 function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Landingscreen />} />
-        <Route path="/home" element={<Homescreen />} />
-        <Route path="/book/:roomid/:fromdate/:todate" element={<Bookingscreen/>}/>
-        <Route path="/login" element={<LoginScreen/>}/>
-        <Route path="/register" element={<RegisterScreen/>}/>
-        <Route path="/profile" element={<ProfileScreen/>}/>
-        <Route path="/admin" element={<Adminscreen/>}/>
-
-      </Routes>
+      <SocketProvider> {/* Wrap routes with SocketProvider */}
+        <Routes>
+          <Route path="/" element={<Landingscreen />} />
+          <Route path="/home" element={<Homescreen />} />
+          <Route path="/book/:roomid/:fromdate/:todate" element={<Bookingscreen/>}/>
+          <Route path="/login" element={<LoginScreen/>}/>
+          <Route path="/register" element={<RegisterScreen/>}/>
+          <Route path="/profile" element={<ProfileScreen/>}/>
+          <Route path="/admin" element={<Adminscreen/>}/>
+        </Routes>
+      </SocketProvider>
     </>
   );
 }
