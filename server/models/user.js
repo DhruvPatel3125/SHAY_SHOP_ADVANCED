@@ -26,7 +26,9 @@ const userSchema = mongoose.Schema({
     },
     googleUid: {
         type: String
-    }
+    },
+    resetPasswordToken: String,
+    resetPasswordExpire: Date
 },{
     timestamps:true,
 })  

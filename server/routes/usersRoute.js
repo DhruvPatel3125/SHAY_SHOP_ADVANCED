@@ -3,7 +3,8 @@ const router = express.Router();
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
 const { body, validationResult } = require("express-validator");
-const { sendMail } = require('../utils/mailer')
+const { sendMail } = require('../utils/mailer');
+const { forgotPassword, resetPassword } = require('../controllers/userController');
 
 
 // Registration validation
@@ -165,6 +166,12 @@ router.post('/google-login', async (req, res) => {
     return res.status(500).json({ message: err.message || 'Google login failed' });
   }
 });
+
+// Forgot Password Request
+router.post("/forgotpassword", forgotPassword);
+
+// Reset Password
+router.put("/resetpassword/:resetToken", resetPassword);
 
 // Admin: get all users (exclude passwords)
 router.get('/getallusers', async (req, res) => {

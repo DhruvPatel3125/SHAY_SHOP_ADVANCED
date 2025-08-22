@@ -154,6 +154,10 @@ function LoginScreen() {
               Login
             </button>
 
+            <div className="text-center mt-2">
+              <Link to="/forgotpassword">Forgot Password?</Link>
+            </div>
+
             {/* Google Login Button */}
             <button
               className="btn btn-danger mt-3 w-50 ml-5"
@@ -164,7 +168,7 @@ function LoginScreen() {
 
             <div className="text-center mt-3">
               <small className="text-muted">Don’t have an account? </small>
-              <Link to="/register">Register</Link>4
+              <Link to="/register">Register</Link>
             </div>
           </div>
         </div>

@@ -8,6 +8,8 @@ import RegisterScreen from './screen/RegisterScreen';
 import ProfileScreen from './screen/ProfileScreen';
 import Adminscreen from './screen/Adminscreen';
 import Landingscreen from './screen/Landingscreen';
+import ForgotPasswordScreen from './screen/ForgotPasswordScreen';
+import ResetPasswordScreen from './screen/ResetPasswordScreen';
 import { SocketProvider } from './context/SocketContext'; // Import SocketProvider
 
 function App() {
@@ -23,6 +25,8 @@ function App() {
           <Route path="/register" element={<RegisterScreen/>}/>
           <Route path="/profile" element={<ProfileScreen/>}/>
           <Route path="/admin" element={<Adminscreen/>}/>
+          <Route path="/forgotpassword" element={<ForgotPasswordScreen/>}/>
+          <Route path="/resetpassword/:resetToken" element={<ResetPasswordScreen/>}/>
         </Routes>
       </SocketProvider>
     </>
