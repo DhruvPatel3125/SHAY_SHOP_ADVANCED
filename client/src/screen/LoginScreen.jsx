@@ -153,11 +153,6 @@ function LoginScreen() {
             <button className="btn btn-primary mt-3 w-50" onClick={login}>
               Login
             </button>
-
-            <div className="text-center mt-2">
-              <Link to="/forgotpassword">Forgot Password?</Link>
-            </div>
-
             {/* Google Login Button */}
             <button
               className="btn btn-danger mt-3 w-50 ml-5"
@@ -165,6 +160,9 @@ function LoginScreen() {
             >
               <i className="fab fa-google me-2"></i> Sign in with Google
             </button>
+            <div className="text-center mt-2">
+              <Link to="/forgotpassword">Forgot Password?</Link>
+            </div>
 
             <div className="text-center mt-3">
               <small className="text-muted">Don’t have an account? </small>
