@@ -2,6 +2,10 @@
 .national-park {
   font-family: "National Park", sans-serif;
 }
+
+*{
+  text-decoration: none !important;
+}
 .navbar {
   background-color: black !important;
   width: 100% !important;
