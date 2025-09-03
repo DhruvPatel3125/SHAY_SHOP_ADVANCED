@@ -1,18 +1,14 @@
-# Node server Dockerfile
 FROM node:20-alpine
-
-# Create app directory
 WORKDIR /app
 
-# Install dependencies first (better caching)
+# Copy package files and install dependencies
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm ci || npm install --legacy-peer-deps
 
-# Copy the rest of the server code
+# Copy the rest of the application code
 COPY . .
 
-# Environment and ports
-ENV NODE_ENV=production
+# Expose the server port
 EXPOSE 5000
 
 # Start the server

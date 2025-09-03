@@ -1,17 +1,26 @@
-# React client Dockerfile (multi-stage)
-FROM node:20-alpine AS build
+# Stage 1: Build the client app
+FROM node:20-alpine AS builder
 WORKDIR /app
+
+# Copy package files and install dependencies
 COPY package*.json ./
-RUN npm ci
+RUN npm install --legacy-peer-deps
+
+# Copy the rest of the source code and build the app
 COPY . .
-# Build the production bundle
 RUN npm run build
 
-# Serve with nginx
-FROM nginx:alpine AS runtime
-# Copy built assets to nginx html dir
-COPY --from=build /app/build /usr/share/nginx/html
-# Expose port 80
+# Stage 2: Serve the built app with Nginx
+FROM nginx:stable-alpine
+
+# Copy the build output from the builder stage to Nginx's serve directory
+COPY --from=builder /app/build /usr/share/nginx/html
+
+# Add custom Nginx config for SPA + API proxy + WebSocket
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Expose port 80 for web traffic
 EXPOSE 80
-# Default nginx start command
+
+# Start Nginx in the foreground
 CMD ["nginx", "-g", "daemon off;"]
