@@ -39,3 +39,5 @@
 /api/rooms/getallrooms GET 21/09/2025, 16:14:19
 /api/users/getallusers GET 21/09/2025, 16:14:24
 /api/rooms/getallrooms GET 21/09/2025, 16:14:33
+/api/rooms/getallrooms POST 21/09/2025, 17:20:48
+/api/rooms/getroombyid/689e0bff8e00a21f356c480e GET 21/09/2025, 17:20:49
